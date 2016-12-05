@@ -38,7 +38,7 @@ public class MastermindControllerTest {
     @Test
     public void shouldReturnSimpleResponseWhenSimplePlayIsMade() throws Exception {
             mvc.perform(MockMvcRequestBuilders.post("/play")
-                    .param("colors", "{\"colors\": [\"blue\", \"red]\", \"yellow\", \"purple\"]}")
+                    .param("colors", "{\"colors\": [\"blue\", \"red\", \"yellow\", \"purple\"]}")
                     .accept(MediaType.APPLICATION_JSON))
                     .andExpect(content().string(equalTo("{\"pin\": [\"black\", \"white\"], \"isWinner\": false }")));
     }
