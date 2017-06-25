@@ -1,6 +1,5 @@
-package com.example.controller.service;
+package com.example.service;
 
-import com.example.service.ColorInputService;
 import org.junit.Test;
 
 import java.util.List;
