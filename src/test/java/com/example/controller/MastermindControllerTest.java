@@ -31,15 +31,29 @@ public class MastermindControllerTest {
 
     @Test
     public void shouldReturnStatusOkWhenAccessingPlayEndpoint() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.post("/play").accept(MediaType.APPLICATION_JSON))
+        mvc.perform(MockMvcRequestBuilders.post("/play")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"colors\": [\"blue\", \"red\", \"yellow\", \"purple\"]}")
+                .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
+
     }
 
     @Test
-    public void shouldReturnSimpleResponseWhenSimplePlayIsMade() throws Exception {
+    public void shouldReturnIsWinnerFalse() throws Exception {
             mvc.perform(MockMvcRequestBuilders.post("/play")
-                    .param("colors", "{\"colors\": [\"blue\", \"red\", \"yellow\", \"purple\"]}")
+                    .content("{\"colors\": [\"green\", \"red\", \"yellow\", \"purple\"]}")
+                    .contentType(MediaType.APPLICATION_JSON)
                     .accept(MediaType.APPLICATION_JSON))
-                    .andExpect(content().string(equalTo("{\"pin\": [\"black\", \"white\"], \"isWinner\": false }")));
+                    .andExpect(content().string(equalTo( "{\"pin\": [\"white\", \"white\", \"white\", \"white\"], \"isWinner\": false }")));
+    }
+
+    @Test
+    public void shouldReturnIsWinnerTrue() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.post("/play")
+                .content("{\"colors\": [\"blue\", \"orange\", \"red\", \"green\"]}")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(content().string(equalTo( "{\"pin\": [\"black\", \"black\", \"black\", \"black\"], \"isWinner\": true }")));
     }
 }
