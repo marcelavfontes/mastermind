@@ -11,6 +11,7 @@ What do you need
 
 How to run
   - Use the command "./gradlew". It will build the project and run all the tests. (For more info, reach https://docs.gradle.org/current/userguide/tutorial_using_tasks.html)
+  - To start the application locally, use the command "./gradlew bootRun". (Since this is a Spring boot application. For more info, reach https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-running-your-application.html)
 
 How to deploy
   - Run all the tests (to make sure everything is passing)
